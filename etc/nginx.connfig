@@ -1,3 +1,5 @@
+log_format simple '$remote_addr $request $status';
+
 server {
 	listen 80;
 	location ^~ ^\/uploads\/.+ {

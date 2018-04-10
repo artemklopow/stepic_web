@@ -11,4 +11,5 @@ sudo /etc/init.d/nginx restart
 cd /home/box/web/ask
 sudo gunicorn -c /home/box/web/ask/ask/ask_wsgi_config ask.wsgi:application
 sudo /etc/init.d/mysql start
+source /home/box/web/ask/venv/bin/activate
 mysql -u root -e 'create database qa'

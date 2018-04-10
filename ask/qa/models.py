@@ -10,22 +10,18 @@ class QuestionManager(models.Model):
         return self.ordering('-rating')
 
 
-class QaUser(auth_models.User):
-    pass
-
-
 class Question(models.Model):
     objects = QuestionManager()
     title = models.CharField(max_length=255)
     text = models.TextField
-    added_at = models.DateTimeField(auto_now_add=True)
+    added_at = models.DateField(auto_now_add=True)
     rating = models.IntegerField(default=0)
-    author = QaUser()
-    likes = models.ManyToManyField(QaUser)
+    author = models.CharField(max_length=255)
+    likes = models.ManyToManyField(auth_models.User, related_name='question_like_user')
 
 
 class Answer(models.Model):
     text = models.TextField
-    added_at = models.DateTimeField(auto_now_add=True)
-    question = Question()
-    author = QaUser()
+    added_at = models.DateField(auto_now_add=True)
+    question = models.OneToOneField(Question, null=False, on_delete=models.CASCADE)
+    author = models.CharField(max_length=255)

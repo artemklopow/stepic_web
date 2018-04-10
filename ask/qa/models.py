@@ -11,17 +11,19 @@ class QuestionManager(models.Model):
 
 
 class Question(models.Model):
-    objects = QuestionManager()
     title = models.CharField(max_length=255)
-    text = models.TextField(null=False)
-    added_at = models.DateField(auto_now_add=True)
+    text = models.TextField()
+    added_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0)
-    author = models.ForeignKey(User, null=False, on_delete=None)
-    likes = models.ManyToManyField(User, related_name='likes_set')
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    likes = models.ManyToManyField(User, related_name='likes')
+    objects = QuestionManager()
 
 
 class Answer(models.Model):
-    text = models.TextField(null=False)
-    added_at = models.DateField(auto_now_add=True)
-    question = models.OneToOneField(Question, null=False, on_delete=None)
-    author = models.ForeignKey(User, null=False, on_delete=None)
+    text = models.TextField()
+    added_at = models.DateTimeField(auto_now_add=True)
+    question = models.OneToOneField(Question, null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+

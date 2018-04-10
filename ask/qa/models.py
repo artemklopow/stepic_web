@@ -28,4 +28,4 @@ class Answer(models.Model):
     text = models.TextField
     added_at = models.DateTimeField(auto_now_add=True)
     question = Question()
-    author = QaUser
+    author = QaUser()

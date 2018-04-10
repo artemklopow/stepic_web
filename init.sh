@@ -10,3 +10,5 @@ sudo ln -sf /home/box/web/etc/hello.py /etc/gunicorn.d/hello.py
 sudo /etc/init.d/nginx restart
 cd /home/box/web/ask
 sudo gunicorn -c /home/box/web/ask/ask/ask_wsgi_config ask.wsgi:application
+sudo /etc/init.d/mysql start
+mysql -u root -e 'create database qa'

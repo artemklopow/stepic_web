@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import models as auth_models
+from django.contrib.auth.models import User
 
 
 class QuestionManager(models.Model):
@@ -16,12 +16,12 @@ class Question(models.Model):
     text = models.TextField(null=False)
     added_at = models.DateField(auto_now_add=True)
     rating = models.IntegerField(default=0)
-    author = models.CharField(max_length=255)
-    likes = models.ManyToManyField(auth_models.User, related_name='question_like_user')
+    author = models.ForeignKey(User, null=False, on_delete=models.SET('Пользователь удален'))
+    likes = models.ManyToManyField(User, related_name='likes_set')
 
 
 class Answer(models.Model):
     text = models.TextField(null=False)
     added_at = models.DateField(auto_now_add=True)
     question = models.OneToOneField(Question, null=False, on_delete=models.CASCADE)
-    author = models.CharField(max_length=255)
+    author = models.ForeignKey(User, null=False, on_delete=models.SET('Пользователь удален'))

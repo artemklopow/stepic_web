@@ -13,4 +13,4 @@ source ~/web/ask/venv/bin/activate
 sudo gunicorn -c /home/box/web/ask/ask/ask_wsgi_config ask.wsgi:application
 sudo /etc/init.d/mysql start
 mysql -u root -e 'create database qa'
-source ~/web/ask/venv/bin/activate
+/home/box/web/ask/manage.py migrate

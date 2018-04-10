@@ -16,12 +16,12 @@ class Question(models.Model):
     text = models.TextField(null=False)
     added_at = models.DateField(auto_now_add=True)
     rating = models.IntegerField(default=0)
-    author = models.ForeignKey(User, null=False, on_delete=models.SET('Пользователь удален'))
+    author = models.ForeignKey(User, null=False, on_delete=None)
     likes = models.ManyToManyField(User, related_name='likes_set')
 
 
 class Answer(models.Model):
     text = models.TextField(null=False)
     added_at = models.DateField(auto_now_add=True)
-    question = models.OneToOneField(Question, null=False, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, null=False, on_delete=models.SET('Пользователь удален'))
+    question = models.OneToOneField(Question, null=False, on_delete=None)
+    author = models.ForeignKey(User, null=False, on_delete=None)

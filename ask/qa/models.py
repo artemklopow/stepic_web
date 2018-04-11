@@ -2,12 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
+
 class QuestionManager(models.Manager):
     def new(self):
         return self.ordered('-id')
 
-    def popular(self):
-        return self.ordered('-rating')
+    def popular(self, x='rating'):
+        return self.ordered('-' + x)
 
     def answer_set(self):
         return Answer.objects.filter(question=self)
@@ -17,6 +19,9 @@ class QuestionManager(models.Manager):
 
     def aggregate(self):
         return self.popular()
+
+    def Max(self, x='rating'):
+        return self.popular(self, x)
 
 
 class Question(models.Model):

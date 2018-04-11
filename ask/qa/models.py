@@ -13,7 +13,10 @@ class QuestionManager(models.Manager):
         return Answer.objects.filter(question=self)
 
     def all(self):
-        pass
+        return self.all()
+
+    def aggregate(self):
+        return self.popular()
 
 
 class Question(models.Model):

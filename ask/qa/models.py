@@ -26,5 +26,3 @@ class Answer(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     question = models.OneToOneField(Question, null=True, on_delete=models.SET_NULL)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-
-print(isinstance(Question.objects, QuestionManager))

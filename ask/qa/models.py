@@ -15,7 +15,7 @@ class QuestionManager(models.Manager):
         return Answer.objects.filter(question=self)
 
     def all(self):
-        return self.all()
+        pass
 
     def aggregate(self):
         return self

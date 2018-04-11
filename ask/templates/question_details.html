@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>{{ que.title }}</h1>
+        <h2>{{ que.text }}</h2>
+        {% for ans in answers %}
+            {{ ans.text }}
+        {% endfor %}
+    </body>
+</html>

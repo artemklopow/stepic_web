@@ -20,6 +20,10 @@ class Question(models.Model):
 
     objects = QuestionManager()
 
+    def get_url(self):
+        url = '/question/' + str(self.id) + '/'
+        return url
+
 
 class Answer(models.Model):
     text = models.TextField()

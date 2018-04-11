@@ -22,8 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', qa_views.test),
     path('signup/', qa_views.test),
-    re_path(r'^question\/[0-9]+', qa_views.test),
+    re_path(r'^question\/<int:question_id>\/', qa_views.question_details),
     path('ask/', qa_views.test),
-    path('popular/', qa_views.test),
-    path('new/', qa_views.test)
+    path('popular/?page=<int:page>', qa_views.question_popular),
+    path('new/', qa_views.test),
+    path('?page=<int:page>', qa_views.question_new)
 ]

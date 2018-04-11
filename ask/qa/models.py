@@ -10,12 +10,6 @@ class QuestionManager(models.Manager):
         return self.ordered('-rating')
 
 
-class Answer(models.Model):
-    text = models.TextField()
-    added_at = models.DateTimeField(auto_now_add=True)
-    question = models.OneToOneField(Question, null=True, on_delete=models.SET_NULL)
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-
 class Question(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
@@ -28,3 +22,12 @@ class Question(models.Model):
     def get_url(self):
         url = '/question/' + str(self.id) + '/'
         return url
+
+    def answer_set(self):
+        pass
+
+class Answer(models.Model):
+    text = models.TextField()
+    added_at = models.DateTimeField(auto_now_add=True)
+    question = models.OneToOneField(Question, null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)

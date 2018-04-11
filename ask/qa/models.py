@@ -18,7 +18,7 @@ class QuestionManager(models.Manager):
         return self.all()
 
     def aggregate(self):
-        return self.popular()
+        return self
 
     def Max(self, x='rating'):
         return self.popular(self, x)
